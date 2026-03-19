@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUATROPHORIA — Angkatan 2023</title>
+    <meta name="description" content="Website resmi Angkatan QUATROPHORIA 2023. Quatrophoria - Super Seru!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css?=v2">
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <img src="https://drive.google.com/thumbnail?id=1sFWus6RyGcG6wTHuTiCwCtSND3wlVfTt&sz=w200"
+                    alt="Quatrophoria Logo" class="logo-icon">
+                <span class="logo-text">QUATROPHORIA</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#tentang" class="nav-link">Tentang</a></li>
+                <li><a href="#galeri" class="nav-link">Galeri</a></li>
+                <li><a href="#anggota" class="nav-link">Anggota</a></li>
+                <li><a href="#event" class="nav-link">Event</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO / HOME ===== -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="hero-particles" id="heroParticles"></div>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge animate-on-scroll">EST. 2023</div>
+            <h1 class="hero-title animate-on-scroll">
+                <span class="title-line">QUATRO</span>
+                <span class="title-line accent">PHORIA</span>
+            </h1>
+            <p class="hero-motto animate-on-scroll">"Quatrophoria - Super Seru!"</p>
+            <div class="hero-buttons animate-on-scroll">
+                <a href="#galeri" class="btn btn-primary">
+                    <span>Lihat Galeri</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="anggota.html" class="btn btn-outline">
+                    <span>Semua Anggota</span>
+                </a>
+                <a href="#tentang" class="btn btn-outline">
+                    <span>Tentang Kami</span>
+                </a>
+            </div>
+            <div class="hero-scroll-indicator">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <span>Scroll ke bawah</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TENTANG KAMI ===== -->
+    <section id="tentang" class="section tentang">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Tentang Kami</span>
+                <h2 class="section-title">Mengenal <span class="text-accent">QUATROPHORIA</span></h2>
+                <p class="section-subtitle">Perjalanan tiga tahun yang membangun persahabatan dan kenangan tak
+                    terlupakan</p>
+            </div>
+
+            <div class="tentang-grid">
+                <div class="tentang-card animate-on-scroll" style="--delay: 0.1s">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path
+                                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                        </svg>
+                    </div>
+                    <h3>Sejarah Angkatan</h3>
+                    <p>QUATROPHORIA lahir dari semangat kebersamaan angkatan 2023. Dimulai dari hari pertama MPLS hingga
+                        hari kelulusan, kami menjalani setiap momen dengan penuh kebersamaan dan tekad yang kuat untuk
+                        saling mendukung satu sama lain.</p>
+                </div>
+
+                <div class="tentang-card animate-on-scroll" style="--delay: 0.2s">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path
+                                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                        </svg>
+                    </div>
+                    <h3>Filosofi Nama</h3>
+                    <p><strong>QUATROPHORIA</strong> berasal dari gabungan kata <em>"Quatro"</em> (empat dalam bahasa
+                        Latin) dan <em>"Euphoria"</em> (kebahagiaan luar biasa). Nama ini melambangkan angkatan ke empat
+                        masa sekolah yang penuh euforia, kegembiraan, dan kenangan indah.</p>
+                </div>
+
+                <div class="tentang-card animate-on-scroll" style="--delay: 0.3s">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path
+                                d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                        </svg>
+                    </div>
+                    <h3>Visi & Misi</h3>
+                    <p>Kami berkomitmen untuk menjaga tali silaturahmi antar anggota angkatan, mengembangkan potensi
+                        diri, dan saling mendukung dalam meraih cita-cita. Bersama QUATROPHORIA, kita tumbuh dan
+                        berkarya.</p>
+                </div>
+            </div>
+
+            <div class="tentang-stats animate-on-scroll">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="17">0</span>
+                    <span class="stat-label">Anggota</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="3">0</span>
+                    <span class="stat-label">Jurusan</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="4">0</span>
+                    <span class="stat-label">Event</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="2023">0</span>
+                    <span class="stat-label">Tahun</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALERI ===== -->
+    <section id="galeri" class="section galeri">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Galeri</span>
+                <h2 class="section-title">Momen <span class="text-accent">Berharga</span></h2>
+                <p class="section-subtitle">Koleksi kenangan indah yang kami abadikan selama perjalanan bersama</p>
+            </div>
+
+            <div class="galeri-filter animate-on-scroll">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="ukasyah">Ukasyah</button>
+                <button class="filter-btn" data-filter="quatrophoria">Quatrophoria</button>
+                <button class="filter-btn" data-filter="khadijah">Khadijah</button>
+            </div>
+
+            <div class="galeri-grid">
+                <!-- Gallery photos removed by user request -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DATA ANGGOTA ===== -->
+    <section id="anggota" class="section anggota">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Data Anggota</span>
+                <h2 class="section-title">Keluarga <span class="text-accent">QUATROPHORIA</span></h2>
+                <p class="section-subtitle">Setiap anggota adalah bagian penting dari keluarga besar kami</p>
+            </div>
+
+            <div class="search-box animate-on-scroll">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                </svg>
+                <input type="text" id="searchInput" placeholder="Cari nama atau jurusan..." autocomplete="off">
+            </div>
+
+            <div class="anggota-actions animate-on-scroll mb-show-all">
+                <a href="anggota.html" class="btn btn-primary btn-sm">
+                    <span>Lihat Semua Anggota</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+
+            <div class="anggota-grid" id="anggotaGrid">
+                <!-- Cards will be generated by JavaScript -->
+            </div>
+
+            <p class="no-results" id="noResults" style="display:none;">Tidak ada anggota yang ditemukan.</p>
+        </div>
+    </section>
+
+    <!-- ===== EVENT & REUNI ===== -->
+    <section id="event" class="section event">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Event & Reuni</span>
+                <h2 class="section-title">Jadwal <span class="text-accent">Acara</span></h2>
+                <p class="section-subtitle">Momen untuk kembali bertemu dan berbagi cerita</p>
+            </div>
+
+            <!-- Countdown -->
+            <div class="countdown-wrapper animate-on-scroll">
+                <h3 class="countdown-title">Haflah & Wisuda Tahfidz</h3>
+                <p class="countdown-date">28 Mei 2026</p>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">000</span>
+                        <span class="countdown-label">Hari</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Jam</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Menit</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Detik</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Agustus 2023</span>
+                        <h4>MPLS — Masa Pengenalan</h4>
+                        <p>Hari pertama menjadi bagian dari keluarga besar sekolah. Penuh tawa, keringat, dan awal
+                            terbentuknya hubungan tali silaturahmi.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Maret 2024</span>
+                        <h4>Qur'an Camp</h4>
+                        <p>Mendekatkan diri kepada Allah dengan dengan kegiatan Tadarus Al Qur'an selama 2 hari 3 malam
+                            bersama tim Grand Tahfidz Al Qur'an.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Januari 2025</span>
+                        <h4>English Camp</h4>
+                        <p>Kegiatan sekolah yaitu meningkatkan dan mengembangkan kemampuan Bahasa Inggris bersama Mr.
+                            Bob selama dua pekan di Kampung Inggris, Kediri.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Februari 2025</span>
+                        <h4>Bukber Quatrophoria</h4>
+                        <p>Kegiatan Tahunan, buka puasa pertama bersama Quatrophoria dalam rangka mempererat hubungan
+                            tali silaturahmi.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2 Maret 2026</span>
+                        <h4>Bukber Quatrophoria</h4>
+                        <p>Kegiatan Tahunan, buka puasa kedua bersama Quatrophoria dalam rangka mempererat hubungan tali
+                            silaturahmi. Juga, fun game bersama teman-teman dan bertukar kado.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot active"></div>
+                    <div class="timeline-content upcoming">
+                        <span class="timeline-date">28 Mei 2026</span>
+                        <h4>Haflah & Wisuda Tahfidz</h4>
+                        <p>Momen haru perpisahan yang menandai akhir dari tiga tahun perjalanan bersama di lingkungan
+                            sekolah.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="https://drive.google.com/thumbnail?id=1sFWus6RyGcG6wTHuTiCwCtSND3wlVfTt&sz=w200"
+                        alt="Quatrophoria Logo" class="footer-logo">
+                    <span class="footer-name">QUATROPHORIA</span>
+                </div>
+                <p class="footer-motto">"Quatrophoria - Super Seru!"</p>
+                <div class="footer-divider"></div>
+                <p class="footer-copy">&copy; 2023 QUATROPHORIA. Semua Hak Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/script.js?=v2"></script>
+</body>
+
+</html>
