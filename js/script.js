@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ===== DATA ANGGOTA =====
-    const anggotaData = [
+    let anggotaData = [
         {
             photo: 'https://drive.google.com/thumbnail?id=1HiJUvxIfdJALtjK4hyfRj0t7e4FbNZNx&sz=w400',
             namaLengkap: 'Fathimah Azzahroh',
@@ -460,6 +460,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Start scrolling
         autoScroll();
+    }
+
+    // ===== AMBIL DATA DARI GOOGLE SPREADSHEET =====
+    // Taruh Link CSV di bawah ini. Pastikan Google Sheet sudah di Publish to Web dalam format CSV.
+    const googleSheetCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQftHJNBYRFf9Uier760srfrifhWPXEyfNLX_SbUoXBh5PmSlzd6HmmPJqnKSJXDfhRHqkoN__n1RFx/pub?gid=1859460455&single=true&output=csv';
+
+    if (googleSheetCSVUrl && typeof Papa !== 'undefined') {
+        const originalHtml = anggotaGrid.innerHTML;
+        anggotaGrid.innerHTML = '<p style="width:100%;text-align:center;padding:20px;">Mengambil data terbaru dari server...</p>';
+
+        Papa.parse(googleSheetCSVUrl, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function (results) {
+                const data = results.data;
+                let mapData = new Map();
+
+                // Fungsi untuk merubah link GDrive biasa menjadi link gambar format thumbnail
+                function formatDriveLink(url) {
+                    if (!url) return '';
+                    let id = '';
+                    
+                    // Terkadang form mengembalikan beberapa link jika allow multiple files (dipisah koma)
+                    const firstUrl = url.split(',')[0].trim();
+
+                    const fileIdMatch = firstUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                    const openIdMatch = firstUrl.match(/id=([a-zA-Z0-9_-]+)/);
+
+                    if (fileIdMatch) id = fileIdMatch[1];
+                    else if (openIdMatch) id = openIdMatch[1];
+
+                    // Menggunakan server lh3 googleusercontent yang lebih stabil & bypass block cookie di browser HP
+                    if (id) return `https://lh3.googleusercontent.com/d/${id}=s800`;
+                    return firstUrl; // kalau bukan link drive, kembalikan apa adanya
+                }
+
+                data.forEach(row => {
+                    // Berdasarkan header aktual di Google Sheets
+                    const namaLengkap = (row['Nama Lengkap'] || '').trim();
+                    if (!namaLengkap) return; // Skip baris jika tidak ada nama
+
+                    // Map di sini fungsinya untuk menimpa nama yang sama. 
+                    // Karena urutan dari GForm itu terlama -> terbaru (berdasar timestamp), 
+                    // Jika ada nama yang sama masuk lagi, dia akan menimpa data yang lama di dalam Map.
+                    mapData.set(namaLengkap.toLowerCase(), {
+                        photo: formatDriveLink((row['Foto Profil'] || '').trim()),
+                        namaLengkap: namaLengkap,
+                        namaPanggilan: (row['Nama Panggilan'] || '').trim(),
+                        jurusan: (row['Jurusan'] || '').trim(),
+                        hobi: (row['Hobi'] || '').trim(),
+                        instagram: (row['Akun Instagram'] || '').trim(),
+                        quote: (row['Quote'] || '').trim()
+                    });
+                });
+
+                if (mapData.size > 0) {
+                    anggotaData = Array.from(mapData.values());
+                    anggotaData.sort((a, b) => a.namaLengkap.localeCompare(b.namaLengkap));
+                    renderAnggota(anggotaData);
+                } else {
+                    anggotaGrid.innerHTML = originalHtml; // Kembalikan ke data default jika csv kosong
+                }
+            },
+            error: function (err) {
+                console.error("Gagal memuat CSV:", err);
+                anggotaGrid.innerHTML = originalHtml; // Kembalikan ke data default jika error
+            }
+        });
     }
 
     // ===== COUNTDOWN TIMER =====
