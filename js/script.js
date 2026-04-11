@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===== COUNTDOWN TIMER =====
-    const reuniDate = new Date('2026-05-28T07:30:00').getTime();
+    const reuniDate = new Date('2026-05-21T07:30:00').getTime();
 
     function updateCountdown() {
         const now = new Date().getTime();
