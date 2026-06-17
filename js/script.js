@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const progress = Math.min(elapsed / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 4); // easeOutQuart
             const current = Math.round(start + (target - start) * eased);
-            element.textContent = current.toLocaleString('id-ID');
+            element.textContent = current;
 
             if (progress < 1) {
                 requestAnimationFrame(update);
@@ -102,27 +102,333 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(update);
     }
 
+    // ===== GALERI SPREADSHEET =====
+
+    const CSV_URL =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSfZoXTXv5wxmSUNFzDjFsp6VI91JWY1PMLdxgqQT6RjQT2zmAN_ju-McTxx6YzLLBkUAoIT9BgdeHw/pub?output=csv";
+
+    let galleryData = [];
+
+    // ===== SHUFFLE =====
+    function shuffle(array) {
+
+        for (let i = array.length - 1; i > 0; i--) {
+
+            const j =
+                Math.floor(
+                    Math.random() * (i + 1)
+                );
+
+            [array[i], array[j]] =
+            [array[j], array[i]];
+        }
+
+        return array;
+    }
+
+    // ===== CONVERT GOOGLE DRIVE LINK =====
+    function convertDriveLink(url) {
+
+        const idMatch =
+            url.match(/id=([^&]+)/);
+
+        if (!idMatch) return url;
+
+        const fileId = idMatch[1];
+
+        return `https://drive.google.com/thumbnail?id=${fileId}&sz=w2000`;
+    }
+
+    // ===== PARSE CSV =====
+    function parseCSV(text) {
+
+        const lines =
+            text.trim().split("\n");
+
+        return lines.slice(1).map(line => {
+
+            const values =
+                line.split(",");
+
+            return {
+
+                category:
+                    values[1]?.trim().toLowerCase(),
+
+                image:
+                    convertDriveLink(
+                        values[2]?.trim()
+                    ),
+
+                title:
+                    values[3]?.trim(),
+
+                description:
+                    values[4]?.trim() || "",
+
+                date:
+                    values[5]?.trim() || ""
+
+            };
+
+        });
+
+    }
+
+    // ===== RENDER GALLERY =====
+    function renderGallery(data) {
+        const modal =
+            document.getElementById("galleryModal");
+
+        const modalImage =
+            document.getElementById("modalImage");
+
+        const modalTitle =
+            document.getElementById("modalTitle");
+
+        const modalDescription =
+            document.getElementById("modalDescription");
+
+        const modalDate =
+            document.getElementById("modalDate");
+
+        const modalCategory =
+            document.getElementById("modalCategory");
+
+        const closeBtn =
+            document.getElementById("galleryClose");
+
+
+        function openGalleryModal(photo) {
+
+            autoScrollRunning = false;
+
+            modalImage.src =
+                photo.image;
+
+            modalTitle.textContent =
+                photo.title;
+
+            modalCategory.textContent =
+                photo.category;
+
+            if (photo.description) {
+
+                modalDescription.style.display =
+                    "block";
+
+                modalDescription.textContent =
+                    photo.description;
+
+            } else {
+
+                modalDescription.style.display =
+                    "none";
+            }
+
+            if (photo.date) {
+
+                modalDate.style.display =
+                    "block";
+
+                modalDate.textContent =
+                    photo.date;
+
+            } else {
+
+                modalDate.style.display =
+                    "none";
+            }
+
+            modal.classList.add("show");
+
+            document.body.style.overflow =
+                "hidden";
+        }
+
+        function closeGalleryModal() {
+
+            modal.classList.remove("show");
+
+            document.body.style.overflow =
+                "";
+
+            autoScrollRunning = true;
+        }
+
+        closeBtn.addEventListener(
+            "click",
+            closeGalleryModal
+        );
+
+        modal.addEventListener(
+            "click",
+            (e) => {
+
+                if (e.target === modal) {
+
+                    closeGalleryModal();
+                }
+
+            }
+        );
+        const grid =
+            document.getElementById("galeriGrid");
+
+        grid.innerHTML = "";
+
+        shuffle([...data]).forEach(photo => {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "galeri-item";
+
+            card.dataset.category =
+                photo.category;
+
+            card.innerHTML = `
+                <img
+                    src="${photo.image}"
+                    alt="${photo.title}"
+                    loading="lazy"
+                    onerror="this.style.display='none'"
+                >
+
+                <div class="galeri-overlay">
+                    <div class="galeri-title">
+                        ${photo.title}
+                    </div>
+                </div>
+            `;
+
+            card.addEventListener(
+                "click",
+                () => openGalleryModal(photo)
+            );
+
+            grid.appendChild(card);
+
+        });
+
+    }
+
+    // ===== SCROLL AUTO =====
+    let autoScrollRunning =
+        true;
+
+    let scrollPosition =
+        0;
+
+    const scrollSpeed =
+        0.3;
+
+    function startAutoScroll() {
+
+        const container =
+            document.querySelector(
+                ".galeri-scroll-container"
+            );
+
+        function animate() {
+
+            if (autoScrollRunning) {
+
+                scrollPosition += scrollSpeed;
+
+                const maxScroll =
+                    container.scrollHeight -
+                    container.clientHeight;
+
+                if (scrollPosition >= maxScroll) {
+
+                    scrollPosition = 0;
+                }
+
+                container.scrollTop =
+                    scrollPosition;
+            }
+
+            requestAnimationFrame(
+                animate
+            );
+        }
+
+        animate();
+    }
+
+    // ===== LOAD GALLERY =====
+    async function loadGallery() {
+
+        try {
+
+            const response =
+                await fetch(CSV_URL);
+
+            const csv =
+                await response.text();
+
+            galleryData =
+                parseCSV(csv);
+
+            console.table(galleryData);
+
+            renderGallery(galleryData);
+
+            startAutoScroll();
+
+        } catch (error) {
+
+            console.error(error);
+
+            document.getElementById(
+                "galeriGrid"
+            ).innerHTML =
+            "Gagal memuat galeri";
+        }
+
+    }
+
+    loadGallery();
+
+
     // ===== GALERI FILTER =====
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const galeriItems = document.querySelectorAll('.galeri-item');
+
+    const filterBtns =
+        document.querySelectorAll(
+            '.filter-btn'
+        );
 
     filterBtns.forEach(btn => {
+
         btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
+
+            filterBtns.forEach(b =>
+                b.classList.remove('active')
+            );
+
             btn.classList.add('active');
 
-            const filter = btn.getAttribute('data-filter');
+            const filter =
+                btn.dataset.filter;
 
-            galeriItems.forEach(item => {
-                const category = item.getAttribute('data-category');
-                if (filter === 'all' || category === filter) {
-                    item.classList.remove('hidden');
-                    item.style.animation = 'fadeInUp 0.5s ease forwards';
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
+            if (filter === "all") {
+
+                renderGallery(galleryData);
+
+                return;
+            }
+
+            const filtered =
+                galleryData.filter(photo =>
+                    photo.category === filter
+                );
+
+            renderGallery(filtered);
+
         });
+
     });
 
     // ===== DATA ANGGOTA =====

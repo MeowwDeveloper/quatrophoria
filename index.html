@@ -144,7 +144,7 @@
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" data-target="2023">0</span>
-                    <span class="stat-label">Tahun</span>
+                    <span class="stat-label">Sejak</span>
                 </div>
             </div>
         </div>
@@ -166,8 +166,14 @@
                 <button class="filter-btn" data-filter="khadijah">Khadijah</button>
             </div>
 
-            <div class="galeri-grid">
-                <!-- Gallery photos removed by user request -->
+            <div class="galeri-scroll-container">
+
+                <div class="galeri-grid" id="galeriGrid">
+                    <div class="gallery-loading">
+                        Memuat galeri...
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -217,8 +223,8 @@
 
             <!-- Countdown -->
             <div class="countdown-wrapper animate-on-scroll">
-                <h3 class="countdown-title">Haflah & Wisuda Tahfidz</h3>
-                <p class="countdown-date">21 Mei 2026</p>
+                <h3 class="countdown-title">Event & Reuni</h3>
+                <p class="countdown-date">00 AAA 0000</p>
                 <div class="countdown" id="countdown">
                     <div class="countdown-item">
                         <span class="countdown-number" id="days">000</span>
@@ -259,7 +265,7 @@
                     <div class="timeline-content">
                         <span class="timeline-date">Maret 2024</span>
                         <h4>Qur'an Camp</h4>
-                        <p>Mendekatkan diri kepada Allah dengan dengan kegiatan Tadarus Al Qur'an selama 2 hari 3 malam
+                        <p>Mendekatkan diri kepada Allah dengan kegiatan Tadarus Al Qur'an selama 2 hari 3 malam
                             bersama tim Grand Tahfidz Al Qur'an.</p>
                     </div>
                 </div>
@@ -326,6 +332,55 @@
     <!-- PapaParse untuk membaca CSV dari Google Sheets -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="./js/script.js?=v2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.5.3/papaparse.min.js"></script>
+
+
+    <!-- ===== GALERI MODAL ===== -->
+
+    <div class="gallery-modal" id="galleryModal">
+        <div class="gallery-modal-content">
+
+            <button class="gallery-close" id="galleryClose">
+                ✕
+            </button>
+
+            <div class="gallery-modal-image">
+
+                <img
+                    id="modalImage"
+                    src=""
+                    alt=""
+                >
+
+            </div>
+
+            <div class="gallery-modal-info">
+
+                <div
+                    class="gallery-category"
+                    id="modalCategory"
+                ></div>
+
+                <h3
+                    class="gallery-title"
+                    id="modalTitle"
+                ></h3>
+
+                <div
+                    class="gallery-date"
+                    id="modalDate"
+                ></div>
+
+                <div
+                    class="gallery-description"
+                    id="modalDescription"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
 </body>
 
 </html>
