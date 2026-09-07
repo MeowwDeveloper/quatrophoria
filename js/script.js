@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===== AMBIL DATA DARI GOOGLE SPREADSHEET =====
     // Taruh Link CSV di bawah ini. Pastikan Google Sheet sudah di Publish to Web dalam format CSV.
-    const googleSheetCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQftHJNBYRFf9Uier760srfrifhWPXEyfNLX_SbUoXBh5PmSlzd6HmmPJqnKSJXDfhRHqkoN__n1RFx/pub?gid=1859460455&single=true&output=csv';
+    const googleSheetCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQftHJNBYRFf9Uier760srfrifhWPXEyfNLX_SbUoXBh5PmSlzd6HmmPJqnKSJXDfhRHqkoN__n1RFx/pub?output=csv';
 
     if (googleSheetCSVUrl && typeof Papa !== 'undefined') {
         const originalHtml = anggotaGrid.innerHTML;
