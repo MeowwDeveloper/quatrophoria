@@ -1426,3 +1426,33 @@ a {
         transform: translateY(-100vh) scale(0.5);
     }
 }
+
+/* Grid used on the specific Anggota page - 3 profiles per row */
+.all-members-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    max-width: var(--container-width) !important;
+    margin: 0 auto !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+.all-members-grid .anggota-card {
+    width: 100% !important;
+    flex-shrink: 0 !important;
+}
+
+/* Responsivitas untuk grid anggota */
+@media (max-width: 992px) {
+    .all-members-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .all-members-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
